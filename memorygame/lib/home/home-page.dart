@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     InitialScreen(),
-    SecondScreen(),
+    AboutScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -39,12 +39,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Memory Cat Game'),
+        backgroundColor: Colors.red,
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       drawer: const DrawerApp(),
@@ -55,14 +55,37 @@ class _HomePageState extends State<HomePage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(Icons.info),
             label: 'About',
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
+        backgroundColor: Colors.red, // Define a cor apenas para a BottomNavigationBar
       ),
+    );
+  }
+}
+
+class AppWidget extends StatelessWidget {
+  const AppWidget({Key? key});
+
+  void logoutCallback(BuildContext context) {
+    Navigator.pushReplacementNamed(context, '/');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomePage(),
+      },
     );
   }
 }

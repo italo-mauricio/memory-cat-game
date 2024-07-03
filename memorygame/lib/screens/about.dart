@@ -1,13 +1,15 @@
-// lib/screens/second_screen.dart
 import 'package:flutter/material.dart';
 
-class SecondScreen extends StatelessWidget {
+class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Second Screen',
-        style: TextStyle(fontSize: 24),
+    return Container(
+      color: Colors.blue, // Cor de fundo personalizada para AboutScreen
+      child: Center(
+        child: Text(
+          'About Screen',
+          style: TextStyle(fontSize: 24, color: Colors.white),
+        ),
       ),
     );
   }
