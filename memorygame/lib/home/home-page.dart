@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memorygame/screens/nickname.dart';
 import '../screens/initial_screen.dart';
 import '../screens/about.dart';
 import '/components/drawer.dart';
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     InitialScreen(),
-    AboutScreen(),
+    NicknameScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -43,8 +44,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Memory Cat Game'),
-        backgroundColor: Colors.red,
+        title: const Text(
+          'Memory Cat Game',
+          style: TextStyle(
+            fontFamily: 'Cattie',
+            fontSize: 50,
+            color: Color.fromARGB(153, 2, 2, 2), // Define a cor da letra aqui
+          ),
+        ),
+        backgroundColor: Color(0xFFF2D680),
+        centerTitle: true,
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       drawer: const DrawerApp(),
@@ -56,13 +65,14 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),
-            label: 'About',
+            label: 'Create NickName',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.red,
         onTap: _onItemTapped,
-        backgroundColor: Colors.red, // Define a cor apenas para a BottomNavigationBar
+        backgroundColor:
+            Color(0xFFF2D680), // Define a cor apenas para a BottomNavigationBar
       ),
     );
   }
