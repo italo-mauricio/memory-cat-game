@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:memorygame/screens/about.dart';
+import 'package:memorygame/screens/nickname.dart';
 import '../home/home-page.dart';
 
 
@@ -21,6 +23,8 @@ class AppWidget extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
+        'account': (context) => NicknameScreen(),
+        'about': (context) => AboutScreen(),
 
       },
     );
