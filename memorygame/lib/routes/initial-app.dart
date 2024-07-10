@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:memorygame/screens/about.dart';
 import 'package:memorygame/screens/nickname.dart';
 import 'package:memorygame/screens/game.dart';
-import '../home/home-page.dart';
+import '../screens/home-page.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key});

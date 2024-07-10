@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memorygame/screens/nickname.dart';
-import '../screens/initial_screen.dart';
-import '../screens/about.dart';
+import 'initial_screen.dart';
+import 'about.dart';
 import '/components/drawer.dart';
 
 void main() {
