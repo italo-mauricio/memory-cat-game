@@ -1,5 +1,6 @@
 import 'package:memorygame/services/api.dart';
 import 'package:flutter/material.dart';
+import 'package:flip_card/flip_card.dart';
 
 class CatCard extends StatelessWidget {
   final int statusCode;
@@ -16,14 +17,28 @@ class CatCard extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData) {
-          return Card(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                snapshot.data!,
-                width: 200,
-                height: 200,
-                fit: BoxFit.cover,
+          return FlipCard(
+            direction: FlipDirection.HORIZONTAL, // ou FlipDirection.VERTICAL
+            front: Card(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  'catlogo.png',
+                  width: 200,
+                  height: 200,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            back: Card(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  snapshot.data!,
+                  width: 200,
+                  height: 200,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           );
