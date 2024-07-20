@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:memorygame/screens/about.dart';
 import 'package:memorygame/screens/nickname.dart';
 import 'package:memorygame/screens/game.dart';
+import 'package:memorygame/screens/ranking.dart';
 import '../screens/home-page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -24,6 +25,7 @@ class AppWidget extends StatelessWidget {
         'account': (context) => NicknameScreen(),
         'about': (context) => AboutScreen(),
         'game': (context) => CatGame(),
+        'ranking': (context) => RankingScreen(),
       },
     );
   }
