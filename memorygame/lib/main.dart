@@ -5,7 +5,6 @@ import 'firebase_options.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import './services/firebase.dart';
 
-ConnetionFirebase connection = ConnetionFirebase();
 
 Future<void> main() async {
   
