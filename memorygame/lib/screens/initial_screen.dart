@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memorygame/screens/ranking.dart';
+import 'package:memorygame/services/firebase.dart';
 
 class InitialScreen extends StatelessWidget {
   @override
@@ -11,10 +12,12 @@ class InitialScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async{
+                List<Map<String, dynamic>> rankings = await connection.getPontuacao();
+
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RankingScreen()),
+                  MaterialPageRoute(builder: (context) => RankingScreen(rankings: rankings)),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -26,10 +29,12 @@ class InitialScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                List<Map<String, dynamic>> rankings = await connection.getPontuacao();
+                
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RankingScreen()),
+                  MaterialPageRoute(builder: (context) => RankingScreen(rankings: rankings)),
                 );
               },
               style: ElevatedButton.styleFrom(
