@@ -3,25 +3,28 @@ import 'package:flutter/material.dart';
 class RankingScreen extends StatelessWidget {
   final Color backgroundColor;
   final Color appBarColor;
+  final List<Map<String, dynamic>> rankings;
+
 
   RankingScreen({
     this.backgroundColor = const Color(0xFFF2D680),
     this.appBarColor = const Color(0xFFF2D680), 
+    required this.rankings,
   });
 
-  final List<RankingItem> rankings = [
-    RankingItem(name: 'Alice', score: 1500),
-    RankingItem(name: 'Bob', score: 1200),
-    RankingItem(name: 'Vivane', score: 1100),
-    RankingItem(name: 'Diana', score: 900),
-    RankingItem(name: 'Eve', score: 850),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ranking'),
+        title: const Center(
+          child: Text('Ranking',
+          style: TextStyle(
+              fontFamily: 'Cattie',
+              fontSize: 50,
+              color: Color.fromARGB(153, 2, 2, 2),
+            ),),
+        ),
         backgroundColor: appBarColor, 
       ),
       backgroundColor: backgroundColor,
@@ -31,20 +34,29 @@ class RankingScreen extends StatelessWidget {
           final item = rankings[index];
           return ListTile(
             leading: CircleAvatar(
-              child: Text((index + 1).toString()),
+              child: Text((index + 1).toString(), 
+              style: const TextStyle(
+                  fontFamily: 'Cattie',
+                  fontSize: 30,
+                  color: Color.fromARGB(153, 2, 2, 2),
+                ),),
             ),
-            title: Text(item.name),
-            trailing: Text(item.score.toString()),
+            title: Text(item['nome_jogador'], 
+            style: const TextStyle(
+                fontFamily: 'Cattie',
+                fontSize: 30,
+                color: Color.fromARGB(153, 2, 2, 2),
+              ),),
+            trailing: Text(item['pontuacao'].toString(),
+              style: const TextStyle(
+                  fontFamily: 'Cattie',
+                  fontSize: 30,
+                  color: Color.fromARGB(153, 2, 2, 2),
+                ),
+              ),
           );
         },
       ),
     );
   }
-}
-
-class RankingItem {
-  final String name;
-  final int score;
-
-  RankingItem({required this.name, required this.score});
 }
