@@ -22,10 +22,10 @@ class AppWidget extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
-        'account': (context) => NicknameScreen(),
-        'about': (context) => AboutScreen(),
-        'game': (context) => CatGame(),
-        'ranking': (context) => RankingScreen(rankings: []),
+        '/account': (context) => NicknameScreen(),
+        '/about': (context) => AboutScreen(),
+        '/game': (context) => CatGame(),
+        '/ranking': (context) => RankingScreen(rankings: []),
       },
     );
   }

@@ -18,8 +18,8 @@ class CatCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
           child: Image.asset(
             backImagePath,
-            width: 200,
-            height: 200,
+            width: 120,
+            height: 120,
             fit: BoxFit.cover,
           ),
         ),
@@ -29,8 +29,8 @@ class CatCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
           child: Image.asset(
             imagePath,
-            width: 200,
-            height: 200,
+            width: 120,
+            height: 120,
             fit: BoxFit.cover,
           ),
         ),

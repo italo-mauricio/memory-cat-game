@@ -50,7 +50,7 @@ class DrawerApp extends StatelessWidget {
               title: const Text('About'),
               onTap: () {
                 Navigator.pop(context); // Fechar o drawer
-                Navigator.pushNamed(context, 'about');
+                Navigator.pushNamed(context, '/about');
               },
             ),
             const Divider(),
