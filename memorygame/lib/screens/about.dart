@@ -13,7 +13,16 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appBarColor,
+        title: const Text(
+          'Memory Cat Game',
+          style: TextStyle(
+            fontFamily: 'Cattie',
+            fontSize: 50,
+            color: Color.fromARGB(153, 2, 2, 2), // Define a cor da letra aqui
+          ),
+        ),
+        backgroundColor: Color(0xFFF2D680),
+        centerTitle: true,
       ),
       body: Container(
         color: backgroundColor,
@@ -22,17 +31,6 @@ class AboutScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 20),
-              Center(
-                child: Text(
-                  'Memory Cat Game',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
-                ),
-              ),
               SizedBox(height: 20),
               Text(
                 'Memory Cat Game é um jogo da memória desenvolvido em Flutter. '
