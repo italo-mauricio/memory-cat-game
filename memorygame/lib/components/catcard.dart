@@ -1,4 +1,3 @@
-import 'package:memorygame/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 
@@ -9,43 +8,33 @@ class CatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String>(
-      future: CatApi().getCatImageUrl(statusCode),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        } else if (snapshot.hasData) {
-          return FlipCard(
-            direction: FlipDirection.HORIZONTAL, // ou FlipDirection.VERTICAL
-            front: Card(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(
-                  'catlogo.png',
-                  width: 200,
-                  height: 200,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            back: Card(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(
-                  snapshot.data!,
-                  width: 200,
-                  height: 200,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          );
-        } else {
-          return Text('Image not found');
-        }
-      },
+    String imagePath = '$statusCode.jpg';
+    String backImagePath = 'catlogo.png';
+
+    return FlipCard(
+      direction: FlipDirection.HORIZONTAL, // ou FlipDirection.VERTICAL
+      front: Card(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: Image.asset(
+            backImagePath,
+            width: 200,
+            height: 200,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+      back: Card(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: Image.asset(
+            imagePath,
+            width: 200,
+            height: 200,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
     );
   }
 }

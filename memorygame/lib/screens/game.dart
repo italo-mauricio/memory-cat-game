@@ -10,7 +10,7 @@ class CatGame extends StatelessWidget {
       ),
       body: Center(
         child: CatCard(
-            statusCode: 698), // Exemplo de uso com o código de status 404
+            statusCode: 200), // Exemplo de uso com o código de status 404
       ),
     );
   }
