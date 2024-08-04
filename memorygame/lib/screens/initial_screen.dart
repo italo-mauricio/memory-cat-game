@@ -30,12 +30,7 @@ class InitialScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-                List<Map<String, dynamic>> rankings = await connection.getPontuacao();
-                
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RankingScreen(rankings: rankings)),
-                );
+                Navigator.pushNamed(context, '/game');
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(200, 60), 
