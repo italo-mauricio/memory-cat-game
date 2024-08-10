@@ -13,11 +13,10 @@ class InitialScreen extends StatelessWidget {
           children: <Widget>[
             ElevatedButton(
               onPressed: () async{
-                List<Map<String, dynamic>> rankings = await connection.getPontuacao();
 
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RankingScreen(rankings: rankings)),
+                  MaterialPageRoute(builder: (context) => RankingScreen()),
                 );
               },
               style: ElevatedButton.styleFrom(
