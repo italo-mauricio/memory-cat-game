@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:memorygame/screens/ranking.dart';
-import 'package:memorygame/services/firebase.dart';
 
 class InitialScreen extends StatelessWidget {
   @override
@@ -13,11 +11,7 @@ class InitialScreen extends StatelessWidget {
           children: <Widget>[
             ElevatedButton(
               onPressed: () async{
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RankingScreen()),
-                );
+                Navigator.pushNamed(context, '/ranking');
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(200, 60), 
