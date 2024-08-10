@@ -8,10 +8,6 @@ import '../screens/home-page.dart';
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key});
 
-  void logoutCallback(BuildContext context) {
-    Navigator.pushReplacementNamed(context, '/');
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +21,7 @@ class AppWidget extends StatelessWidget {
         '/account': (context) => NicknameScreen(),
         '/about': (context) => AboutScreen(),
         '/game': (context) => CatGame(),
-        '/ranking': (context) => RankingScreen(rankings: []),
+        '/ranking': (context) => RankingScreen(),
       },
     );
   }
