@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memorygame/components/myAppBar.dart';
 class AboutScreen extends StatelessWidget {
-  final Color backgroundColor;
-  final Color appBarColor;
-
-  AboutScreen({
-    this.backgroundColor = const Color(0xFFF2D680),
-    this.appBarColor = const Color(0xFFF2D680),
-  });
+  final Color backgroundColor = const Color(0xFFF2D680);
 
   @override
   Widget build(BuildContext context) {

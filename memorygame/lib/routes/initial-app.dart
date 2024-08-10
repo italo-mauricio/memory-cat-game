@@ -8,10 +8,6 @@ import '../screens/home-page.dart';
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key});
 
-  void logoutCallback(BuildContext context) {
-    Navigator.pushReplacementNamed(context, '/');
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
