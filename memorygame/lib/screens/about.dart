@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:memorygame/components/myAppBar.dart';
 class AboutScreen extends StatelessWidget {
   final Color backgroundColor;
   final Color appBarColor;
@@ -12,17 +12,8 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Memory Cat Game',
-          style: TextStyle(
-            fontFamily: 'Cattie',
-            fontSize: 50,
-            color: Color.fromARGB(153, 2, 2, 2), // Define a cor da letra aqui
-          ),
-        ),
-        backgroundColor: Color(0xFFF2D680),
-        centerTitle: true,
+      appBar: MyAppBar(
+        title: 'Memory Cat Game',
       ),
       body: Container(
         color: backgroundColor,

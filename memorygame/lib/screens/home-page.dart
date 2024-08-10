@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:memorygame/screens/nickname.dart';
 import 'initial_screen.dart';
 import '/components/drawer.dart';
+import 'package:memorygame/components/myAppBar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,17 +26,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Memory Cat Game',
-          style: TextStyle(
-            fontFamily: 'Cattie',
-            fontSize: 50,
-            color: Color.fromARGB(153, 2, 2, 2), // Define a cor da letra aqui
-          ),
-        ),
-        backgroundColor: Color(0xFFF2D680),
-        centerTitle: true,
+      appBar: MyAppBar(
+        title: 'Memory Cat Game',
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       drawer: const DrawerApp(),

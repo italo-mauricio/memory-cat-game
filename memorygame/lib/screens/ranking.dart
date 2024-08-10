@@ -1,31 +1,19 @@
 import 'package:flutter/material.dart';
-
+import 'package:memorygame/components/myAppBar.dart';
 class RankingScreen extends StatelessWidget {
   final Color backgroundColor;
-  final Color appBarColor;
   final List<Map<String, dynamic>> rankings;
-
 
   RankingScreen({
     this.backgroundColor = const Color(0xFFF2D680),
-    this.appBarColor = const Color(0xFFF2D680), 
     required this.rankings,
   });
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text('Ranking',
-          style: TextStyle(
-              fontFamily: 'Cattie',
-              fontSize: 50,
-              color: Color.fromARGB(153, 2, 2, 2),
-            ),),
-        ),
-        backgroundColor: appBarColor, 
+      appBar: MyAppBar(
+        title: 'Ranking',
       ),
       backgroundColor: backgroundColor,
       body: ListView.builder(
