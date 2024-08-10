@@ -59,25 +59,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-class AppWidget extends StatelessWidget {
-  const AppWidget({Key? key});
-
-  void logoutCallback(BuildContext context) {
-    Navigator.pushReplacementNamed(context, '/');
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => HomePage(),
-      },
-    );
-  }
-}
