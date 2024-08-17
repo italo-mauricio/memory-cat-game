@@ -18,13 +18,8 @@ erDiagram
 
     JOGADOR_PARTIDA {
         int id pk
+        int pontuacao
         int id_jogador fk
-        int id_partida fk
-    }
-
-    PONTUACAO {
-        int id pk
-        int pontos
         int id_partida fk
     }
 
@@ -37,8 +32,6 @@ erDiagram
     JOGADOR ||--o{ JOGADOR_PARTIDA : "participa"
 
     PARTIDA ||--o{ JOGADOR_PARTIDA : "tem"
-
-    PARTIDA ||--|{ PONTUACAO : "tem"
 
     MODALIDADE ||--o{ PARTIDA : "tem uma"
    
