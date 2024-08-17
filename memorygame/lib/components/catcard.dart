@@ -5,8 +5,9 @@ class CatCard extends StatelessWidget {
   final int statusCode;
   final int index;
   final Function(int) onFlip;
+  final bool flipEnabled;
 
-  CatCard({required this.statusCode, required this.index, required this.onFlip});
+  CatCard({required this.statusCode, required this.index, required this.onFlip, required this.flipEnabled});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +15,7 @@ class CatCard extends StatelessWidget {
     String backImagePath = 'catlogo.png';
 
     return FlipCard(
+      flipOnTouch: flipEnabled,
       direction: FlipDirection.HORIZONTAL, // ou FlipDirection.VERTICAL
       onFlip: () {
         onFlip(index); // Chama o callback passando o índice da carta
