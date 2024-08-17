@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'catcard.dart';
 import 'package:flutter/material.dart';
 import 'package:memorygame/models/memorygame.dart';
+import 'package:flip_card/flip_card_controller.dart';
 
 class CardList extends StatefulWidget {
   final int numCards;
@@ -20,30 +23,48 @@ class _CardListState extends State<CardList> {
 
   late List<Map<String, dynamic>> _images;
   final List<int> _flippedCards = []; // Lista para armazenar os índices das cartas viradas
+  late List<FlipCardController> _controllers;
+  bool _processing = false;
 
   @override
   void initState() {
     super.initState();
     _images = _gameManager.generateImageList(widget.numCards); // Gera as imagens uma vez
+    _controllers = List.generate(widget.numCards, (_) => FlipCardController()); // Cria um controller para cada carta
   }
 
   void _handleFlip(int index) {
+    if (_processing) {
+      return;
+    }
+
     if (_flippedCards.length < 2 && !_flippedCards.contains(index)) {
       setState(() {
         _flippedCards.add(index);
       });
 
-      final imagePath = _images[index]['image'];
-      final label = _images[index]['index'];
-      print('Card at index $index flipped with image path $imagePath and label $label');
-      print('Flipped cards: $_flippedCards');
+      // final imagePath = _images[index]['image'];
+      // final label = _images[index]['index'];
+      // print('Card at index $index flipped with image path $imagePath and label $label');
+      // print('Flipped cards: $_flippedCards');
     }
-
-    else if (_flippedCards.contains(index)) {
+    
+    if (_flippedCards.length == 2) {
       setState(() {
-        _flippedCards.remove(index);
+          _processing = true;
+      });
+
+      Future.delayed(const Duration(seconds: 1), () {
+        _controllers[_flippedCards[0]].toggleCard();
+        _controllers[_flippedCards[1]].toggleCard();
+
+        setState(() {
+          _flippedCards.clear();
+          _processing = false;
+        });
       });
     }
+
   }
 
   @override
@@ -62,6 +83,7 @@ class _CardListState extends State<CardList> {
           index: index,
           onFlip: _handleFlip,
           flipEnabled: _flippedCards.length < 2 || _flippedCards.contains(index), // Permite virar apenas duas cartas
+          controller: _controllers[index],
         );
       },
     );

@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:flip_card/flip_card_controller.dart';
 
 class CatCard extends StatelessWidget {
   final int statusCode;
   final int index;
   final Function(int) onFlip;
   final bool flipEnabled;
+  final FlipCardController? controller;
 
-  CatCard({required this.statusCode, required this.index, required this.onFlip, required this.flipEnabled});
+  CatCard({
+    required this.statusCode,
+    required this.index,
+    required this.onFlip,
+    required this.flipEnabled,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +24,7 @@ class CatCard extends StatelessWidget {
 
     return FlipCard(
       flipOnTouch: flipEnabled,
+      controller: controller,
       direction: FlipDirection.HORIZONTAL, // ou FlipDirection.VERTICAL
       onFlip: () {
         onFlip(index); // Chama o callback passando o índice da carta
