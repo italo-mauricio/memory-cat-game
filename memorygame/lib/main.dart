@@ -13,7 +13,5 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   
-  connection.getModalidade();
-
   runApp(const AppWidget());
 }
