@@ -43,10 +43,6 @@ class _CardListState extends State<CardList> {
         _flippedCards.add(index);
       });
 
-      // final imagePath = _images[index]['image'];
-      // final label = _images[index]['index'];
-      // print('Card at index $index flipped with image path $imagePath and label $label');
-      // print('Flipped cards: $_flippedCards');
     }
     
     if (_flippedCards.length == 2) {
@@ -55,9 +51,14 @@ class _CardListState extends State<CardList> {
       });
 
       Future.delayed(const Duration(seconds: 1), () {
-        _controllers[_flippedCards[0]].toggleCard();
-        _controllers[_flippedCards[1]].toggleCard();
-
+        final firstIndex = _flippedCards[0];
+        final secondIndex = _flippedCards[1];
+        
+        if (_images[firstIndex]['index'] != _images[secondIndex]['index']) {
+          _controllers[firstIndex].toggleCard();
+          _controllers[secondIndex].toggleCard();
+        }
+        
         setState(() {
           _flippedCards.clear();
           _processing = false;
