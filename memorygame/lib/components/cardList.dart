@@ -17,12 +17,18 @@ class CardList extends StatefulWidget {
 class _CardListState extends State<CardList> {
   final MemoryGameManager _gameManager = MemoryGameManager();
 
-  late List<int> _images;
+  late List<Map<String, dynamic>> _images;
 
   @override
   void initState() {
     super.initState();
     _images = _gameManager.generateImageList(widget.numCards); // Gera as imagens uma vez
+  }
+
+  void _handleFlip(int index) {
+    final imagePath = _images[index]['image'];
+    final label = _images[index]['index'];
+    print('Card at index $index flipped with image path $imagePath and label $label');
   }
 
   @override
@@ -38,7 +44,10 @@ class _CardListState extends State<CardList> {
       itemCount: widget.numCards,
       itemBuilder: (context, index) {
         return CatCard(
-          statusCode: _images[index],
+          statusCode: _images[index]['image'],
+          index: index,
+          onFlip: _handleFlip,
+          
         );
       },
     );
