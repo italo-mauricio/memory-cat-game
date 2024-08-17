@@ -73,6 +73,10 @@ class _CardListState extends State<CardList> {
         setState(() {
           _flippedCards.clear();
           _processing = false;
+
+          if (_matchedCards.length == widget.numCards) {
+            Navigator.pushNamed(context, '/score_register', arguments: _score);
+          }
         });
       });
     }
