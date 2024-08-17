@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memorygame/services/firebase.dart';
 
 class ScoreRegister extends StatelessWidget {
   @override
@@ -56,14 +57,33 @@ class ScoreRegister extends StatelessWidget {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Pontuação  ${score.toString()} salva com sucesso para o jogador  ${_nicknameController.text.trim()}!'),
-                    ),
-                  );
+                onPressed: () async {
+                  String nickname = _nicknameController.text.trim();
 
-                  Navigator.pushNamed(context, '/');
+                  try {
+                    // Obtém ou cria o jogador
+                    String playerId = await connection.getJogador(nickname);
+
+                    String gameId = await connection.criarPartida(60); 
+
+                    // Salva a pontuação e a associação com a partida
+                    await connection.salvarPontuacao(playerId, gameId, score);
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Pontuação ${score.toString()} salva com sucesso para o jogador $nickname!'),
+                      ),
+                    );
+
+                    Navigator.pushNamed(context, '/');
+                  } catch (e) {
+                    print('Erro ao salvar pontuação: $e');
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Erro ao salvar pontuação. Por favor, tente novamente.'),
+                      ),
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFFF2D680),
