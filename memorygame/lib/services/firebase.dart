@@ -48,6 +48,37 @@ class ConnetionFirebase {
       return [];
     }
   }
+  
+  Future<String> getJogador(String nickname) async {
+    QuerySnapshot jogadorSnapshot = await db
+        .collection('jogador')
+        .where('nick', isEqualTo: nickname)
+        .get();
+
+    if (jogadorSnapshot.docs.isEmpty) {
+      DocumentReference jogadorRef = await db.collection('jogador').add({'nick': nickname});
+      return jogadorRef.id;
+    } else {
+      return jogadorSnapshot.docs.first.id;
+    }
+  }
+
+  Future<String> criarPartida(int duracao) async {
+    DocumentReference partidaRef = await db.collection('partida').add({
+      'duracao': duracao,
+      'modalidade': 'UtbrXU0CGTpIVIpSicY3',
+    });
+    return partidaRef.id;
+  }
+
+  Future<void> salvarPontuacao(String jogadorId, String partidaId, int pontuacao) async {
+    await db.collection('jogador_partida').add({
+      'id_jogador': jogadorId,
+      'id_partida': partidaId,
+      'pontuacao': pontuacao,
+    });
+  }
+
 
 }
 
