@@ -4,11 +4,11 @@ import 'catcard.dart';
 import 'package:flutter/material.dart';
 import 'package:memorygame/models/memorygame.dart';
 import 'package:flip_card/flip_card_controller.dart';
-
 class CardList extends StatefulWidget {
   final int numCards;
+  final void Function(int) onScoreChanged;
 
-  CardList({required this.numCards}) {
+  CardList({required this.numCards, required this.onScoreChanged}) {
     if (numCards % 2 != 0) {
       throw Exception('Number of cards must be even.');
     }
@@ -22,9 +22,11 @@ class _CardListState extends State<CardList> {
   final MemoryGameManager _gameManager = MemoryGameManager();
 
   late List<Map<String, dynamic>> _images;
-  final List<int> _flippedCards = []; // Lista para armazenar os índices das cartas viradas
+  final List<int> _flippedCards = [];
+  final List<int> _matchedCards = []; 
   late List<FlipCardController> _controllers;
   bool _processing = false;
+  int _score = 0;
 
   @override
   void initState() {
@@ -34,7 +36,7 @@ class _CardListState extends State<CardList> {
   }
 
   void _handleFlip(int index) {
-    if (_processing) {
+    if (_processing  || _matchedCards.contains(index)) {
       return;
     }
 
@@ -57,6 +59,15 @@ class _CardListState extends State<CardList> {
         if (_images[firstIndex]['index'] != _images[secondIndex]['index']) {
           _controllers[firstIndex].toggleCard();
           _controllers[secondIndex].toggleCard();
+          
+          _score -= 10;
+          widget.onScoreChanged(_score);
+        }
+        else {
+          _score += 100;
+          widget.onScoreChanged(_score);
+          _matchedCards.add(firstIndex);
+          _matchedCards.add(secondIndex);
         }
         
         setState(() {
@@ -83,7 +94,7 @@ class _CardListState extends State<CardList> {
           statusCode: _images[index]['image'],
           index: index,
           onFlip: _handleFlip,
-          flipEnabled: _flippedCards.length < 2 || _flippedCards.contains(index), // Permite virar apenas duas cartas
+          flipEnabled: (_flippedCards.length < 2 || _flippedCards.contains(index)) && !_matchedCards.contains(index), 
           controller: _controllers[index],
         );
       },
