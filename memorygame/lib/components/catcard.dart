@@ -20,7 +20,7 @@ class CatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String imagePath = '$statusCode.jpg';
-    String backImagePath = 'catlogo.png';
+    String backImagePath = 'back/catlogo.png';
 
     return FlipCard(
       flipOnTouch: flipEnabled,
