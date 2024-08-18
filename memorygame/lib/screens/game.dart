@@ -25,7 +25,7 @@ class _CatGameState extends State<CatGame> {
       ),
       body: Center(
           child: CardList(
-              numCards: 4,
+              numCards: 8,
               onScoreChanged: _updateScore
             ) // Exemplo de uso com o código de status 404
           ),
