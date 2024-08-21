@@ -21,7 +21,7 @@ class AppWidget extends StatelessWidget {
         '/': (context) => HomePage(),
         '/account': (context) => NicknameScreen(),
         '/about': (context) => AboutScreen(),
-        '/game': (context) => CatGame(),
+        '/game': (context) => CatGame(initialNumCards: 8, initialScore: 0),
         '/ranking': (context) => RankingScreen(),
         '/score_register': (context) => ScoreRegister(),
       },
