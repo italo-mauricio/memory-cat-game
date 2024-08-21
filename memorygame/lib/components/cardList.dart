@@ -7,8 +7,10 @@ import 'package:flip_card/flip_card_controller.dart';
 class CardList extends StatefulWidget {
   final int numCards;
   final void Function(int) onScoreChanged;
+  final void Function() onGameFinished;
+  final int initialScore; 
 
-  CardList({required this.numCards, required this.onScoreChanged}) {
+  CardList({required this.numCards, required this.onScoreChanged, required this.onGameFinished, required this.initialScore}) {
     if (numCards % 2 != 0) {
       throw Exception('Number of cards must be even.');
     }
@@ -26,13 +28,14 @@ class _CardListState extends State<CardList> {
   final List<int> _matchedCards = []; 
   late List<FlipCardController> _controllers;
   bool _processing = false;
-  int _score = 0;
+  late int _score;
 
   @override
   void initState() {
     super.initState();
     _images = _gameManager.generateImageList(widget.numCards); // Gera as imagens uma vez
-    _controllers = List.generate(widget.numCards, (_) => FlipCardController()); // Cria um controller para cada carta
+    _controllers = List.generate(widget.numCards, (_) => FlipCardController());
+    _score = widget.initialScore;
   }
 
   void _handleFlip(int index) {
@@ -75,7 +78,12 @@ class _CardListState extends State<CardList> {
           _processing = false;
 
           if (_matchedCards.length == widget.numCards) {
-            Navigator.pushNamed(context, '/score_register', arguments: _score);
+            if (widget.numCards == 16) {
+              Navigator.pushNamed(context, '/score_register', arguments: _score);
+            }
+            else {
+              widget.onGameFinished();
+            }
           }
         });
       });
